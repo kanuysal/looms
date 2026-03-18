@@ -1,9 +1,6 @@
 import React from "react";
 import Image from "next/image";
 // images
-import location_1 from "@/assets/img/inner-contact/contact/spain.png";
-import location_2 from "@/assets/img/inner-contact/contact/usa.png";
-import location_3 from "@/assets/img/inner-contact/contact/turkiye.png";
 import Link from "next/link";
 import { useTranslation } from "@/provider/LanguageProvider";
 
@@ -16,7 +13,7 @@ const ContactLocation = () => {
   const translated_location_data = [
     {
       id: 1,
-      img: location_1,
+      img: "/assets/img/inner-contact/contact/spain.png",
       country: t('spain'),
       time: "09:00 am GMT+1",
       location_title: t('spain_title'),
@@ -26,7 +23,7 @@ const ContactLocation = () => {
     },
     {
       id: 2,
-      img: location_2,
+      img: "/assets/img/inner-contact/contact/usa.png",
       country: t('usa'),
       time: "09:00 am EST",
       location_title: t('usa_title'),
@@ -36,13 +33,13 @@ const ContactLocation = () => {
     },
     {
       id: 3,
-      img: location_3,
-      country: t('turkey') || "Türkiye", // Fallback to literal if missing in translation
+      img: "/assets/img/inner-contact/contact/turkiye.png",
+      country: t('turkey'),
       time: "09:00 am GMT+3",
-      location_title: t('turkey_title') || "TURKEY OFFICE",
-      address: t('turkey_office') || "Besevler Mahallesi, Simge Sokak, <br /> Nilufer/Bursa",
-      phone: t('turkey_phone') || "+34 633 623 632",
-      email: t('turkey_email') || "info@interlooms.com",
+      location_title: t('turkey_title'),
+      address: t('turkey_office'),
+      phone: t('turkey_phone'),
+      email: t('turkey_email'),
     },
   ];
 

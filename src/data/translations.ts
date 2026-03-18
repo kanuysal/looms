@@ -137,6 +137,11 @@ export const translations = {
     customers: "Customers",
     years_in_business: "Years in business",
     offices: "Offices",
+    turkey: "Turkey",
+    turkey_title: "TURKEY OFFICE",
+    turkey_office: "Besevler Mahallesi, Simge Sokak, <br /> Nilufer/Bursa",
+    turkey_phone: "+34 633 623 632",
+    turkey_email: "info@interlooms.com",
 
     // About Us Page
     about_us_page_title: "About Us",
@@ -328,6 +333,11 @@ export const translations = {
     customers: "Clientes",
     years_in_business: "Años en el sector",
     offices: "Oficinas",
+    turkey: "Turquía",
+    turkey_title: "OFICINA DE TURQUÍA",
+    turkey_office: "Besevler Mahallesi, Simge Sokak, <br /> Nilufer/Bursa",
+    turkey_phone: "+34 633 623 632",
+    turkey_email: "info@interlooms.com",
 
     // About Us Page
     about_us_page_title: "Sobre Nosotros",
@@ -519,6 +529,11 @@ export const translations = {
     customers: "Müşteriler",
     years_in_business: "Yıllık Deneyim",
     offices: "Ofisler",
+    turkey: "Türkiye",
+    turkey_title: "TÜRKİYE OFİSİ",
+    turkey_office: "Beşevler Mahallesi, Simge Sokak, <br /> Nilüfer/Bursa",
+    turkey_phone: "+34 633 623 632",
+    turkey_email: "info@interlooms.com",
 
     // About Us Page
     about_us_page_title: "Hakkımızda",

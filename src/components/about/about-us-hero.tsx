@@ -19,7 +19,7 @@ export default function AboutUsHero() {
   return (
     <div
       className="ab-inner-hero-area ab-inner-hero-bg p-relative"
-      style={{backgroundImage: "url(/assets/img/main/main_12.jpg)"}}
+      style={{ background: "transparent" }}
     >
       <div className="breadcurmb-site d-none">
         <h6>{t('about_us_page_title')}</h6>
@@ -43,7 +43,12 @@ export default function AboutUsHero() {
               <span className="ab-inner-hero-subtitle">
                 {t('digital_creative_agency').split(' ')[0]} <br /> {t('digital_creative_agency').split(' ').slice(1).join(' ')}
               </span>
-              <div style={{ padding: '40px 0', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', maxWidth: '600px' }}>
+
+              <h4 className="tp_title_anim mt-30 mb-0" style={{ position: 'relative', zIndex: 10, maxWidth: '800px' }}>
+                {t('impact_desc')}
+              </h4>
+
+              <div style={{ padding: '20px 0', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', maxWidth: '600px', marginTop: '-40px' }}>
                 <RingSequence 
                   imagePath="/assets/animations/ring/" 
                   totalFrames={250} 
@@ -52,7 +57,6 @@ export default function AboutUsHero() {
                   autoHeight={true}
                 />
               </div>
-              <p>{t('impact_desc')}</p>
             </div>
           </div>
         </div>
