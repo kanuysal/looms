@@ -3,18 +3,18 @@ import Image from "next/image";
 import { Behance, CloseTwo, Dribble, InstagramTwo, Youtube } from "../svg";
 
 // images
-// images
 import logo from "@/assets/img/logo/logo.png";
-import gallery_1 from "@/assets/img/main/main_1.jpg";
-import gallery_2 from "@/assets/img/main/main_2.jpg";
-import gallery_3 from "@/assets/img/main/main_3.jpg";
-import gallery_4 from "@/assets/img/main/main_11.jpg";
 import MobileMenus from "./mobile-menus";
 import Link from "next/link";
 import { useTranslation } from "@/provider/LanguageProvider";
 import { useTheme } from "next-themes";
 
-const gallery_images = [gallery_1, gallery_2, gallery_3, gallery_4];
+const gallery_images = [
+  "/assets/img/main/main_1.jpg", 
+  "/assets/img/main/main_2.jpg", 
+  "/assets/img/main/main_3.jpg", 
+  "/assets/img/main/main_11.jpg"
+];
 
 // prop type
 type IProps = {
@@ -65,7 +65,7 @@ export default function MobileOffcanvas({ openOffcanvas, setOpenOffcanvas }: IPr
                   <div className="col-md-3 col-3" key={i}>
                     <div className="tp-offcanvas-gallery-img fix">
                       <Link href="#">
-                        <Image style={{ width: "100%", height: "auto" }} src={item} alt="gallery-img" />
+                        <Image width={150} height={150} src={item} alt="gallery-img" />
                       </Link>
                     </div>
                   </div>
