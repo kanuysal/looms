@@ -44,9 +44,9 @@ export default function AboutUsHero() {
                 {t('digital_creative_agency').split(' ')[0]} <br /> {t('digital_creative_agency').split(' ').slice(1).join(' ')}
               </span>
 
-              <h4 className="tp_title_anim mt-30 mb-0" style={{ position: 'relative', zIndex: 10, maxWidth: '800px' }}>
+              <h1 className="tp_title_anim mt-30 mb-0" style={{ position: 'relative', zIndex: 10, maxWidth: '800px' }}>
                 {t('impact_desc')}
-              </h4>
+              </h1>
 
               <div style={{ padding: '20px 0', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', maxWidth: '600px', marginTop: '-40px' }}>
                 <RingSequence 
