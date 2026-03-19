@@ -34,15 +34,7 @@ const menu_data: IMenuDT[] = [
 export default menu_data;
 
 // mobile menus 
-export const mobile_menu_data: {
-  id: number;
-  title: string;
-  link: string;
-  dropdown_menus?: {
-    title: string;
-    link: string;
-  }[];
-}[] = [
+export const mobile_menu_data: IMenuDT[] = [
   {
     id: 1,
     title: 'home',
