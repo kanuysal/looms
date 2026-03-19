@@ -84,6 +84,7 @@ const marcellus = Marcellus({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://interlooms.com"),
   title: "INTERLOOMS - Sustainable Textile Solutions",
   description: "Interlooms develops, designs & delivers sustainable textile solutions that drive progress in the textile industry.",
   openGraph: {

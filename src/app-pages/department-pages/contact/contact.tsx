@@ -13,6 +13,7 @@ import Wrapper from "@/layouts/wrapper";
 import HeaderEleven from "@/layouts/headers/header-eleven";
 import ContactTwo from "@/components/contact/contact-two";
 import ContactLocation from "@/components/contact/contact-location";
+import VFXFooter from "@/components/elements/VFXHeroSection";
 import FooterTwo from "@/layouts/footers/footer-two";
 // animation
 import { charAnimation } from "@/utils/title-animation";
@@ -79,6 +80,8 @@ const ContactMain = () => {
             {/* footer area */}
             <FooterTwo topCls="" whiteFooter={true} />
             {/* footer area */}
+
+            <VFXFooter />
           </div>
         </div>
       </div>

@@ -14,20 +14,24 @@ void main() {
   vec2 uv = (gl_FragCoord.xy - offset) / resolution;
   vec4 color = texture2D(src, uv);
 
-  // Mouse
+  // Mouse interaction
   vec2 d = gl_FragCoord.xy - mouse;
-  float m = 1. - tanh(100. / length(d)) * 0.2;
+  float dist = length(d);
   
-  // Distort (subtle wave)
-  uv.x += sin(uv.y * 3.) * 0.3;
-  uv.y += sin(uv.x * 7.) * 0.4;
+  // Very smooth mouse ripple
+  float ripple = 1.0 - (0.5 / (1.0 + pow(dist / 120.0, 2.0)));
   
-  // Value field
-  float v = (sin(uv.x) + sin(uv.y)) * m;
-   
-  // Convert to color
-  float f = sin(v * 200. + time * 10.);
-  f = smoothstep(.0, .2, f);
+  // Extremely gentle, large scale ocean waves
+  uv.x += sin(uv.y * 1.2 + time * 0.8) * 0.15;
+  uv.y += cos(uv.x * 0.8 + time * 0.6) * 0.15;
+  
+  // Broad, soft light modulation
+  float v = (sin(uv.x * 2.5) + cos(uv.y * 2.5)) * ripple;
+  
+  // Single, large, bold wave modulation (no flickering lines)
+  float f = sin(v * 7.0 + time * 4.0);
+  f = smoothstep(-0.2, 0.5, f);
+  
   gl_FragColor = color * f;
 }
 `;
@@ -46,9 +50,7 @@ export default function VFXFooter() {
           vfxInstance = new VFX();
           
           if (textRef.current) {
-            // Using a standard/web-safe font fallback helps prevent SVG <foreignObject> rendering issues
-            // that cause WebGL to capture a blank/black texture on first load.
-            vfxInstance.add(textRef.current, { shader, overflow: 100 });
+            vfxInstance.add(textRef.current, { shader, overflow: 300 });
           }
         } catch (err) {
           console.error("VFX init error", err);
@@ -59,7 +61,6 @@ export default function VFXFooter() {
     if (textRef.current) {
       observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          // Initialize when element is in or near viewport
           if (document.fonts) {
             document.fonts.ready.then(() => setTimeout(initVFX, 100));
           } else {
@@ -83,22 +84,66 @@ export default function VFXFooter() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: '#000', padding: '120px 0', width: '100%', overflow: 'hidden', position: 'relative' }}>
+    <div style={{ 
+      backgroundColor: '#000', 
+      width: '100%', 
+      overflow: 'hidden', 
+      position: 'relative',
+      height: '60vh', // Increased height to match original feeling
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      {/* Background Video (Wavy structure) */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1,
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          crossOrigin="anonymous"
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover',
+            opacity: 0.7,
+            transform: 'scale(1.1)' // Small scale push to eliminate any potential edges
+          }}
+        >
+          <source
+            src="https://uploads-ssl.webflow.com/56d8a8f1100bc1bb7928eebd/58458c90a39ccfdb4c175922_HECO_LINE_ANIMATION_v04-transcode.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+
       <h1 
         ref={textRef} 
         style={{
           fontFamily: `'Cinzel', var(--tp-ff-prisma), 'Arial Black', sans-serif`,
           fontWeight: 700,
-          fontSize: '9vw',
+          fontSize: '10vw',
           width: '100%',
           textAlign: 'center',
           whiteSpace: 'nowrap',
           lineHeight: '1',
-          letterSpacing: '2px',
+          letterSpacing: '8px',
           color: '#fff',
           margin: 0,
           userSelect: 'none',
-          display: 'inline-block'
+          zIndex: 10,
+          position: 'relative'
         }}
       >
         INTERLOOMS

@@ -20,6 +20,7 @@ import VideoThree from "@/components/video/video-three";
 import ServiceFour from "@/components/service/service-four";
 import ContactOne from "@/components/contact/contact-one";
 import FooterFour from "@/layouts/footers/footer-four";
+import VFXFooter from "@/components/elements/VFXHeroSection";
 import { textInvert } from "@/utils/text-invert";
 import { fadeAnimation, revelAnimationOne, titleAnimation, charAnimation } from "@/utils/title-animation";
 import { projectThreeAnimation } from "@/utils/project-anim";
@@ -120,6 +121,8 @@ const HomeFourMain = () => {
           {/* footer area */}
           <FooterFour />
           {/* footer area */}
+
+          <VFXFooter />
         </div>
       </div>
     </Wrapper>

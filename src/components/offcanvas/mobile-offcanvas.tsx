@@ -65,7 +65,7 @@ export default function MobileOffcanvas({ openOffcanvas, setOpenOffcanvas }: IPr
                   <div className="col-md-3 col-3" key={i}>
                     <div className="tp-offcanvas-gallery-img fix">
                       <Link href="#">
-                        <Image width={150} height={150} src={item} alt="gallery-img" />
+                        <Image width={150} height={150} src={item} alt="gallery-img" style={{ height: 'auto' }} />
                       </Link>
                     </div>
                   </div>

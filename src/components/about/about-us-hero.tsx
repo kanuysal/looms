@@ -5,9 +5,16 @@ import { ScrollDown } from "../svg";
 import Link from "next/link";
 import RingSequence from "../elements/RingSequence";
 import { useTranslation } from "@/provider/LanguageProvider";
+import { useTheme } from "next-themes";
 
 export default function AboutUsHero() {
   const { t } = useTranslation();
+  const { theme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const scrollTo = () => {
     scroller.scrollTo('about-info', {
@@ -32,42 +39,59 @@ export default function AboutUsHero() {
           </span>
         </a>
       </div>
-      <div className="container container-1480">
-        <div className="row">
-          <div className="col-xl-8">
+      <div className="container container-1480" style={{ position: 'relative', minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        {/* Animation as background */}
+        <div style={{ 
+          position: 'absolute', 
+          top: '50%', 
+          left: '50%', 
+          transform: 'translate(-50%, -50%)', 
+          zIndex: 1, 
+          width: '100%', 
+          maxWidth: '800px',
+          opacity: 0.8
+        }}>
+          <RingSequence 
+            imagePath="/assets/animations/ring/" 
+            totalFrames={250} 
+            width={800} 
+            height={800} 
+            autoHeight={true}
+          />
+        </div>
+
+        <div className="row" style={{ position: 'relative', zIndex: 10 }}>
+          <div className="col-xl-12 text-center">
             <div
               className="ab-inner-hero-title-box"
               data-lag="0.2"
               data-stagger="0.08"
             >
-              <span className="ab-inner-hero-subtitle">
-                {t('digital_creative_agency').split(' ')[0]} <br /> {t('digital_creative_agency').split(' ').slice(1).join(' ')}
-              </span>
-
-              <h1 className="tp_title_anim mt-30 mb-0" style={{ position: 'relative', zIndex: 10, maxWidth: '800px' }}>
-                {t('impact_desc')}
+              <h1 
+                className="tp_title_anim mb-0" 
+                style={{ 
+                  fontSize: 'clamp(30px, 8vw, 90px)',
+                  color: mounted && theme === 'dark' ? '#fff' : '#000',
+                  lineHeight: '0.9',
+                  fontWeight: '900',
+                  textTransform: 'uppercase',
+                  letterSpacing: '-2px'
+                }}
+              >
+                GLOBAL <br /> TEXTILE <br /> SOLUTIONS
               </h1>
-
-              <div style={{ padding: '20px 0', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', maxWidth: '600px', marginTop: '-40px' }}>
-                <RingSequence 
-                  imagePath="/assets/animations/ring/" 
-                  totalFrames={250} 
-                  width={600} 
-                  height={600} 
-                  autoHeight={true}
-                />
-              </div>
             </div>
           </div>
         </div>
-        <div className="row justify-content-end">
-          <div className="col-xl-5 col-lg-8">
+        
+        <div className="row justify-content-center mt-50" style={{ position: 'relative', zIndex: 10 }}>
+          <div className="col-xl-6 text-center">
             <div
               className="ab-inner-hero-content"
               data-lag="0.2"
               data-stagger="0.08"
             >
-              <p>
+              <p style={{ fontSize: '20px' }}>
                 {t('interlooms_story_desc')}
               </p>
                <Link className="tp-btn-white-sm border-style" href="#">{t('our_story_btn')}</Link>

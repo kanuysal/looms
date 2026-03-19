@@ -12,6 +12,7 @@ import HeaderEleven from "@/layouts/headers/header-eleven";
 import FooterTwo from "@/layouts/footers/footer-two";
 import AboutUsHero from "@/components/about/about-us-hero";
 import AboutUsArea from "@/components/about/about-us-area";
+import VFXFooter from "@/components/elements/VFXHeroSection";
 import TeamOne from "@/components/team/team-one";
 import FunFactOne from "@/components/fun-fact/fun-fact-one";
 import RibbonSection from "@/components/elements/RibbonSection";
@@ -72,6 +73,8 @@ const AboutUsMain = () => {
           {/* footer area */}
           <FooterTwo topCls="" />
           {/* footer area */}
+
+          <VFXFooter />
         </div>
       </div>
     </Wrapper>

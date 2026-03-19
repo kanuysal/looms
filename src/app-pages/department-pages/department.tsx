@@ -28,22 +28,44 @@ const DepartmentMain = () => {
   }, []);
 
   const { language } = useTranslation();
+  const [prevLang, setPrevLang] = React.useState(language);
+
+  // Force reload on language change specifically on this page 
+  // because horizontal scroll layouts are very sensitive to text width changes
+  useEffect(() => {
+    if (prevLang !== language) {
+      window.location.reload();
+    }
+  }, [language, prevLang]);
 
   useGSAP(() => {
     let timerId: NodeJS.Timeout;
+    let refreshId: NodeJS.Timeout;
+
     const ctx = gsap.context(() => {
+      // Clear existing scroll positions to avoid jump
+      window.scrollTo(0, 0);
+
       timerId = setTimeout(() => {
+        // Initial build
         studioPanel();
-        setTimeout(() => {
-          ScrollTrigger.refresh();
-        }, 500);
-      }, 500);
+        
+        // Multiple refreshes to catch lazy-loaded text/images
+        setTimeout(() => ScrollTrigger.refresh(), 100);
+        refreshId = setTimeout(() => ScrollTrigger.refresh(), 1000);
+      }, 300); // Wait for content to settle
     });
+
+    const handleResize = () => ScrollTrigger.refresh();
+    window.addEventListener('resize', handleResize);
+
     return () => {
       clearTimeout(timerId);
+      clearTimeout(refreshId);
+      window.removeEventListener('resize', handleResize);
       ctx.revert();
     };
-  }, { dependencies: [language] });
+  }, { dependencies: [language], revertOnUpdate: true });
 
   return (
     <Wrapper>

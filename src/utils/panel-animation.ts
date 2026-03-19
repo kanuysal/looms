@@ -88,41 +88,47 @@ function panelTwoAnimation() {
 
 
 function studioPanel() {
-  let pp_2 = gsap.matchMedia();
-  pp_2.add("(min-width: 1200px)", () => {
+  let mm = gsap.matchMedia();
+  mm.add("(min-width: 1200px)", () => {
+    const sections = gsap.utils.toArray(".panels-2");
 
-    const panelsSectionss = gsap.utils.toArray(".panels-2");
-    for (let i = 0; i < panelsSectionss.length; i++) {
+    sections.forEach((section: any) => {
+      const panels = gsap.utils.toArray(".panels-container-2 .panel-2", section);
+      const container = section.querySelector(".panels-container-2");
 
-      const thePanelsSection: any = panelsSectionss[i];
-      const panels = gsap.utils.toArray(".panels-container-2 .panel-2", thePanelsSection);
-      const panelsContainer = thePanelsSection.querySelector(".panels-container-2");
+      if (!container) return;
 
-      gsap.set(panelsContainer, { height: window.innerHeight });
-      gsap.set(panels, { height: window.innerHeight });
+      const updateWidths = () => {
+        let totalWidth = 0;
+        panels.forEach((panel: any) => {
+          // Force height to viewport so width is calculated correctly for flex items
+          gsap.set(panel, { height: window.innerHeight });
+          totalWidth += panel.getBoundingClientRect().width;
+        });
+        gsap.set(container, { width: totalWidth, height: window.innerHeight });
+        return totalWidth;
+      };
 
-      let totalPanelsWidth: any = 0;
-      panels.forEach(function (panel: any) {
-        totalPanelsWidth += $(panel).width();
-      });
+      let totalPanelsWidth = updateWidths();
 
-
-      gsap.set(panelsContainer, { width: totalPanelsWidth });
       let scrollTween = gsap.to(panels, {
-        x: - totalPanelsWidth + innerWidth,
+        x: () => -(container.scrollWidth - window.innerWidth),
         ease: "none",
         scrollTrigger: {
-          trigger: panelsContainer,
+          trigger: section,
           pin: true,
-          pinSpacing: true,
-          start: "top 0",
           scrub: 1,
-          end: (st) => "+=" + totalPanelsWidth,
+          start: "top 0",
+          end: () => "+=" + container.scrollWidth,
+          invalidateOnRefresh: true,
+          onRefresh: (self) => {
+            // Recalculate if dimensions changed during GSAP refresh
+            updateWidths();
+          }
         }
       });
 
       const services_items: any = gsap.utils.toArray(".tp-studio-service-item");
-
       services_items.forEach(function (item: any) {
         gsap.to(item, {
           marginLeft: '0',
@@ -135,10 +141,10 @@ function studioPanel() {
           }
         })
       });
-    }
-
+    });
   });
-};
+}
+
 
 
 function servicePanel() {
