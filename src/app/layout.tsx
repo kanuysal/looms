@@ -121,7 +121,7 @@ export default function RootLayout({
          ${syne_body.variable} ${syne_heading.variable} ${syne_p.variable}
           ${syne.variable} ${marcellus.variable} ${prisma.variable}`}
       >
-        <ThemeProvider defaultTheme="light">
+        <ThemeProvider defaultTheme="dark">
           <LanguageProvider>
             <VideoProvider>
               {children}

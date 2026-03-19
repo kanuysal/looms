@@ -9,9 +9,9 @@ const LanguageSwitcher = ({ dark = false }: { dark?: boolean }) => {
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   const languages: { code: LanguageType; label: string; flag: string }[] = [
-    { code: 'EN', label: 'English', flag: '🇬🇧' },
-    { code: 'ES', label: 'Español', flag: '🇪🇸' },
-    { code: 'TR', label: 'Türkçe', flag: '🇹🇷' }
+    { code: 'EN', label: 'EN', flag: '' },
+    { code: 'ES', label: 'ES', flag: '' },
+    { code: 'TR', label: 'TR', flag: '' }
   ];
 
   React.useEffect(() => {

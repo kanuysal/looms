@@ -81,7 +81,11 @@ export default function ProjectFour({ style_2 = false }: IProps) {
           <div className="row justify-content-center">
             <div className="col-xl-7">
               <div className="tp-project-3-title-box p-relative mb-150 text-center">
-                <h4 className="tp-section-title-200 tp_reveal_anim">
+                <h4 
+                  className="tp-section-title-200 tp_reveal_anim"
+                  data-duration="1.8"
+                  data-delay="0.1"
+                >
                   {t('explore_sections')} <span>{t('sections')}</span>
                 </h4>
                 <div className="tp-project-3-btn-box" style={{ transform: 'translateX(10vw)' }}>

@@ -325,9 +325,9 @@ function revelAnimationOne() {
         areveal.anim = gsap.from(areveal.split.chars, {
           scrollTrigger: {
             trigger: areveal,
-            start: "top 85%",
+            start: "top 90%",
             end: "bottom 15%",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "play none none none",
           },
           duration: duration_value,
           delay: data_delay,
